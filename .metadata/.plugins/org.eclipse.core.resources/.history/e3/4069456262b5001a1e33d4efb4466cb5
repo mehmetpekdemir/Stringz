@@ -1,0 +1,26 @@
+package com.mehmetpekdemir.stringz;
+
+import java.util.Map;
+
+/**
+ * 
+ * @author MEHMET PEKDEMIR
+ * @since 1.0
+ *
+ */
+public final class Stringz {
+
+	private Stringz() {
+		throw new AssertionError("Cannot be instantiated ! ");
+	}
+	
+	private void isEmpty(String str) {
+		
+	}
+	// counts duplicate characters from a given string.
+
+	private static Map<Character, Integer> countDuplicateCharacters(String str) {
+		isEmpty(str);
+		return null;
+	}
+}
