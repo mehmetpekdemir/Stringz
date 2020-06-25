@@ -1,3 +1,0 @@
-INDEX VERSION 1.131+D:\JavaGame\.metadata\.plugins\org.eclipse.jdt.core
-4164685139.index
-3543422066.index
