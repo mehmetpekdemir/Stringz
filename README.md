@@ -23,8 +23,6 @@
 
 ### Requirements : 
 For building and running the application you need:
-<<<<<<< HEAD
+
 - [JDK 1.8](https://www.oracle.com/tr/java/technologies/javase-downloads.html) or newer
-=======
-- [JDK 1.8](https://www.oracle.com/tr/java/technologies/javase-downloads.html) or newer
->>>>>>> fc4f047be606982b1c9c074fa4813d6f69e6fe5e
+
