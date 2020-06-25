@@ -12,8 +12,10 @@ import com.mehmetpekdemir.util.Sort;
  *
  */
 public class Main {
+
 	private static final String TEXT = "MEHMET";
 	private static final String[] STRINGS = { "one", "two", "three", "four", "five" };
+	private static final String[] TEXTS = { "abc", "abcd", "abcde", "ab", "abcd", "abcdef" };
 
 	public static void main(String[] args) {
 		System.out.println(Stringz.countDuplicateCharacters(TEXT));
@@ -34,8 +36,9 @@ public class Main {
 		System.out.println(Stringz.contains(TEXT, "MEH"));
 		System.out.println(Stringz.countStringInString(TEXT, "ME"));
 		System.out.println(Stringz.isAnagram(TEXT, "MEHTME"));
-		System.out.println(Stringz.concatRepeat(TEXT, 30));
-
+		System.out.println(Stringz.concatRepeat(TEXT, 10));
+		System.out.println(Stringz.longestCommonPrefix(TEXTS));
+		
 	}
 
 }
