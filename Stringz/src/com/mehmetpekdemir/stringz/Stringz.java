@@ -2,6 +2,7 @@ package com.mehmetpekdemir.stringz;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -10,6 +11,7 @@ import java.util.Set;
 import java.util.StringJoiner;
 
 import com.mehmetpekdemir.util.Pair;
+import com.mehmetpekdemir.util.Sort;
 
 /**
  * 
@@ -126,7 +128,7 @@ public final class Stringz {
 	 * there are 5 vowels : ( a , e , i , o , u ).
 	 * 
 	 * Also, note that languages can have a different number of vowels and
-	 * consonants (e.g. ,in Turkish there are 8 vowels: a , e , ý , i , o , ö , u, ü
+	 * consonants (e.g. ,in Turkish there are 8 vowels.)
 	 * 
 	 * @param str
 	 * @return vowels and consonants
@@ -203,17 +205,6 @@ public final class Stringz {
 	}
 
 	/**
-	 * Generates all permutations of a given string.
-	 * 
-	 * @param str
-	 * @return permuteAndStore(prefix,str)
-	 */
-	public static Set<String> permuteAndStore(String str) {
-		isEmpty(str);
-		return permuteAndStore("", str); // This is a private method.
-	}
-
-	/**
 	 * 
 	 * @param prefix
 	 * @param str
@@ -233,6 +224,17 @@ public final class Stringz {
 		}
 
 		return permutations;
+	}
+
+	/**
+	 * Generates all permutations of a given string.
+	 * 
+	 * @param str
+	 * @return permuteAndStore(prefix,str)
+	 */
+	public static Set<String> permuteAndStore(String str) {
+		isEmpty(str);
+		return permuteAndStore("", str); // This is a private method.
 	}
 
 	/**
@@ -328,5 +330,123 @@ public final class Stringz {
 		}
 
 		return Pair.of(maxCharacter, maxOccurences);
+	}
+
+	/**
+	 * Check Sort
+	 * 
+	 * @param direction
+	 * @throws IllegalArgumentException
+	 */
+	private static void isEmpty(Sort direction) {
+		if (direction == null) {
+			throw new IllegalArgumentException();
+		}
+	}
+
+	/**
+	 * Sorts by length the given array of strings.
+	 * 
+	 * @param strings
+	 * @param direction
+	 */
+	public static void sortArrayByLength(String[] strings, Sort direction) {
+		isEmpty(strings);
+		isEmpty(direction);
+		if (direction.equals(Sort.ASCENDING)) {
+			Arrays.sort(strings, Comparator.comparingInt(String::length));
+		} else {
+			Arrays.sort(strings, Comparator.comparingInt(String::length).reversed());
+		}
+	}
+
+	/**
+	 * Checks if the given string contains the given substring.
+	 * 
+	 * @param text
+	 * @param subText
+	 * @return True : contain , False : does not contain
+	 */
+	public static boolean contains(String text, String subText) {
+		isEmpty(text);
+		isEmpty(subText);
+		return text.indexOf(subText) != -1; // Search a string for the first occurrence of subText.
+	}
+
+	/**
+	 * Count the occurrences of a given string in another given string.
+	 * 
+	 * @param str
+	 * @param toFind
+	 * @return count
+	 */
+	public static int countStringInString(String str, String toFind) {
+		isEmpty(str);
+		isEmpty(toFind);
+
+		int position = 0;
+		int count = 0;
+		int n = toFind.length();
+
+		while ((position = str.indexOf(toFind, position)) != -1) {
+			position = position + n;
+			count++;
+		}
+
+		return count;
+	}
+
+	/**
+	 * Checks if two strings are anagrams. Consider that an anagram of a string is a
+	 * permutation of this string ignoring capitalization and whitespaces.
+	 * 
+	 * @param str1
+	 * @param str2
+	 * @return true : Anagram , False : is not anagram
+	 */
+	public static boolean isAnagram(String str1, String str2) {
+		isEmpty(str1);
+		isEmpty(str2);
+
+		char[] chArray1 = str1.replaceAll("\\s", "").toLowerCase().toCharArray();
+		char[] chArray2 = str2.replaceAll("\\s", "").toLowerCase().toCharArray();
+
+		if (chArray1.length != chArray2.length) {
+			return false;
+		}
+
+		// Analysis of QuickSort : Best Case : O(nLogn) , Worst Case : O(n^2).
+		Arrays.sort(chArray1);
+		Arrays.sort(chArray2);
+
+		return Arrays.equals(chArray1, chArray2);
+	}
+
+	/**
+	 * Concatenates the same string of a given number of times.
+	 * 
+	 * @param str
+	 * @param count
+	 * @return combined string
+	 * @throw {@link OutOfMemoryError}
+	 */
+
+	public static String concatRepeat(String str, int count) {
+		isEmpty(str);
+
+		if (count <= 0) {
+			return str;
+		}
+
+		if (Integer.MAX_VALUE / count < str.length()) {
+			throw new OutOfMemoryError("Maximum size of a String will be exceeded ! ");
+		}
+
+		StringBuilder sb = new StringBuilder(str.length() * count);
+		for (int i = 0; i < count; i++) {
+			sb.append(str + " ");
+		}
+
+		return sb.toString();
 	}
 }
