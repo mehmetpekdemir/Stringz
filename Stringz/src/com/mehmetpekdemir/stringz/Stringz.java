@@ -1,9 +1,11 @@
 package com.mehmetpekdemir.stringz;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.StringJoiner;
 
@@ -12,7 +14,7 @@ import com.mehmetpekdemir.util.Pair;
 /**
  * 
  * @author MEHMET PEKDEMIR
- * @since 1.0
+ * @since 1.8
  *
  */
 public final class Stringz {
@@ -231,5 +233,100 @@ public final class Stringz {
 		}
 
 		return permutations;
+	}
+
+	/**
+	 * Determines if the given string is palindrome or not.
+	 * 
+	 * @param str
+	 * @return true: palindrome , false : is not palindrome
+	 */
+	public static boolean isPalindrome(String str) {
+		isEmpty(str);
+
+		return str.equals(new StringBuilder(str).reverse().toString());
+	}
+
+	/**
+	 * Removes the duplicate characters from the given string.
+	 * 
+	 * @param str
+	 * @return str
+	 */
+	public static String removeDuplicates(String str) {
+		isEmpty(str);
+
+		StringBuilder sb = new StringBuilder();
+		Set<Character> characters = new HashSet<Character>();
+
+		final char[] chArray = str.toCharArray();
+		for (char ch : chArray) {
+			if (characters.add(ch)) {
+				// Return Value: The function returns True if the element is not present in the
+				// HashSet otherwise False if the element is already present in the HashSet.
+				sb.append(ch);
+			}
+		}
+
+		return sb.toString();
+	}
+
+	/**
+	 * Removes the given character from the given string.
+	 * 
+	 * @param str
+	 * @param ch
+	 * @return str
+	 */
+	public static String removeCharacter(String str, char ch) {
+		isEmpty(str);
+
+		StringBuilder sb = new StringBuilder();
+
+		final char[] chArray = str.toCharArray();
+		for (char c : chArray) {
+			if (c != ch) {
+				sb.append(c);
+			}
+		}
+		return sb.toString();
+	}
+
+	/**
+	 * Finds the character with the most appearances in the given string.
+	 * 
+	 * Ignoring space character !
+	 * 
+	 * @param str
+	 * @return most repeating character format: [character-name , sum-character]
+	 */
+	public static Pair<Character, Integer> maxOccurenceCharacter(String str) {
+		isEmpty(str);
+
+		HashMap<Character, Integer> hashMap = new HashMap<Character, Integer>();
+
+		final char[] chArray = str.toCharArray();
+		for (int i = 0; i < chArray.length; i++) {
+			char ch = chArray[i];
+			if (!Character.isWhitespace(ch)) {
+				Integer number = hashMap.get(ch);
+				if (number == null) {
+					hashMap.put(ch, 1);
+				} else {
+					hashMap.put(ch, ++number);
+				}
+			}
+		}
+
+		int maxOccurences = Collections.max(hashMap.values());
+
+		char maxCharacter = Character.MIN_VALUE;
+		for (Entry<Character, Integer> entry : hashMap.entrySet()) {
+			if (entry.getValue() == maxOccurences) {
+				maxCharacter = entry.getKey();
+			}
+		}
+
+		return Pair.of(maxCharacter, maxOccurences);
 	}
 }

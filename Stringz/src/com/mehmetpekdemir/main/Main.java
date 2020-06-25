@@ -1,10 +1,11 @@
 package com.mehmetpekdemir.main;
 
 import com.mehmetpekdemir.stringz.Stringz;
+
 /**
  * 
  * @author MEHMET PEKDEMIR
- * @since 1.0
+ * @since 1.8
  *
  */
 public class Main {
@@ -14,11 +15,15 @@ public class Main {
 		System.out.println(Stringz.firstNonRepeatedCharacter("MEHMET"));
 		System.out.println(Stringz.reverse("MEHMET"));
 		System.out.println(Stringz.containsOnlyDigits("123a"));
-		System.out.println(Stringz.countVowelsAndConsonants("MEHMET"));
+		System.out.println(Stringz.countVowelsAndConsonants("MEHMET").toString());
 		System.out.println(Stringz.countOccurencesOfACertainCharacter("MEHMET", 'M'));
 		System.out.println(Stringz.removeWhiteSpaces("Mehmet     Pekdemir       "));
-		System.out.println(Stringz.joinByDelimiter(' ', "Mehmet","Pekdemir","Test"));
+		System.out.println(Stringz.joinByDelimiter(' ', "Mehmet", "Pekdemir", "Test"));
 		System.out.println(Stringz.permuteAndStore("ABC"));
+		System.out.println(Stringz.isPalindrome("NOON"));
+		System.out.println(Stringz.removeDuplicates("MEHMET"));
+		System.out.println(Stringz.removeCharacter("MEHMET", 'M'));
+		System.out.println(Stringz.maxOccurenceCharacter("MEHMET"));
 	}
 
 }
